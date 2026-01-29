@@ -4,9 +4,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PurchaseController;
+use App\Http\Controllers\UserController;
 
 Route::get('/user', function (Request $request) {
-    return $request->user();
+    return $request->user('sanctum');
 })->middleware('auth_required');
 
 Route::controller(AuthController::class)->group(function () {
@@ -17,4 +18,8 @@ Route::controller(AuthController::class)->group(function () {
 
 Route::controller(PurchaseController::class)->middleware('auth_required')->prefix('/purchase')->group(function () {
     Route::post('/', 'makePurchase');
+});
+
+Route::controller(UserController::class)->middleware('auth_required')->prefix('/user')->group(function () {
+    Route::get('/{user_id}/achievements', 'getUserAchievements');
 });

@@ -2,9 +2,11 @@
 
 namespace App\Providers;
 
+use App\Http\Service\IUserService;
 use App\Service\IAuthService;
 use App\Service\Impl\AuthService;
 use App\Service\Impl\PurchaseService;
+use App\Service\Impl\UserService;
 use App\Service\Impl\WalletService;
 use App\Service\IPurchaseService;
 use App\Service\IWalletService;
@@ -30,6 +32,11 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(
             IWalletService::class,
             WalletService::class
+        );
+
+        $this->app->bind(
+            IUserService::class,
+            UserService::class
         );
     }
 
