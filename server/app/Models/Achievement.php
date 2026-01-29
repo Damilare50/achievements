@@ -1,0 +1,30 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Achievement extends Model
+{
+    protected $table = 'achievements';
+
+    protected $primaryKey = 'id';
+
+    protected $keyType = 'string';
+
+
+    protected $fillable = [
+        'name',
+        'description',
+        'badge_icon_url',
+        'threshold'
+    ];
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'users_achievements', 'achievement_id', 'user_id')
+            ->as('user')
+            ->withPivot('unlocked_at')
+            ->withTimestamps();
+    }
+}
