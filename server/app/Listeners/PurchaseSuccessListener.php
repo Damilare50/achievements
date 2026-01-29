@@ -22,6 +22,17 @@ class PurchaseSuccessListener implements ShouldQueue, ShouldBeEncrypted
      */
     public function handle(PurchaseSuccess $event): void
     {
-        //
+        $user = $event->user;
+
+        // Perform actions upon successful purchase
+        // For example, increase the user's total purchases
+        $user->incrementNumberOfPurchases();
+
+        $user->refresh();
+
+        // if current number is equal to an achievement threshold, award achievement
+        if ($user->isEligibleForAnAchievement()) {
+            //publish achievement unlocked event
+        }
     }
 }

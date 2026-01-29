@@ -59,4 +59,16 @@ class User extends Authenticatable
             ->withPivot('unlocked_at')
             ->withTimestamps();
     }
+
+    public function incrementNumberOfPurchases(): void
+    {
+        $this->increment('no_of_purchases');
+    }
+
+    public function isEligibleForAnAchievement()
+    {
+        $a = Achievement::where('threshold', $this->no_of_purchases)->first();
+
+        return $a;
+    }
 }
