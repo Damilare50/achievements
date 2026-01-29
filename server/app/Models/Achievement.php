@@ -2,15 +2,20 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 
 class Achievement extends Model
 {
+    use HasUuids;
+
     protected $table = 'achievements';
 
     protected $primaryKey = 'id';
 
     protected $keyType = 'string';
+
+    public $incrementing = false;
 
 
     protected $fillable = [
