@@ -2,6 +2,7 @@
 
 namespace App\Service\Impl;
 
+use App\Events\PurchaseSuccess;
 use App\Models\User;
 use App\Service\IPurchaseService;
 use Illuminate\Support\Facades\Log;;
@@ -13,8 +14,9 @@ class PurchaseService implements IPurchaseService
     // do purchases
     $response = $this->processPurchase($data);
     // trigger PurchaseSuccessEvent
+    PurchaseSuccess::dispatchIf($response['success'], $user->id);
 
-    throw new \Exception('Not implemented');
+    return [];
   }
 
   public function processPurchase(array $data): array
