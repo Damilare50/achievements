@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Service\IUserService;
+use App\Service\IUserService;
 use Illuminate\Http\Request;
 
 class UserController extends Controller

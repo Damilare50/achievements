@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Http\Service\IUserService;
+use App\Service\IUserService;
 use App\Service\IAuthService;
 use App\Service\Impl\AuthService;
 use App\Service\Impl\PurchaseService;
