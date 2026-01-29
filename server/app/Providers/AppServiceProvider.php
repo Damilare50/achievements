@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use App\Service\IAuthService;
 use App\Service\Impl\AuthService;
+use App\Service\Impl\PurchaseService;
+use App\Service\IPurchaseService;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -16,6 +18,11 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(
             IAuthService::class,
             AuthService::class
+        );
+
+        $this->app->bind(
+            IPurchaseService::class,
+            PurchaseService::class
         );
     }
 
