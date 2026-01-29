@@ -3,6 +3,7 @@
 namespace App\Listeners;
 
 use App\Events\AchievementUnlocked;
+use App\Service\IWalletService;
 use Carbon\Carbon;
 use Illuminate\Contracts\Queue\ShouldBeEncrypted;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -12,8 +13,9 @@ class AchievementUnlockedListener implements ShouldQueue, ShouldBeEncrypted
     /**
      * Create the event listener.
      */
-    public function __construct()
-    {
+    public function __construct(
+        private readonly IWalletService $walletService
+    ) {
         //
     }
 
@@ -31,6 +33,11 @@ class AchievementUnlockedListener implements ShouldQueue, ShouldBeEncrypted
             'unlocked_at' => Carbon::now(),
         ]);
 
-        //implement cashback or reward logic here
+        //implement cashback
+        $this->walletService->addFunds(
+            $user->id,
+            300.00,
+            "Cashback Reward for unlocking $achievement->name"
+        );
     }
 }
