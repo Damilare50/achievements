@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Auth\CreateUserRequest;
+use App\Http\Requests\Auth\LoginRequest;
 use App\Service\AuthService;
 
 class AuthController extends Controller
@@ -15,6 +16,15 @@ class AuthController extends Controller
         $data = $request->validated();
 
         $response = $this->authService->createUser($data);
+
+        return response()->json($response, 200);
+    }
+
+    public function login(LoginRequest $request)
+    {
+        $data = $request->validated();
+
+        $response = $this->authService->login($data);
 
         return response()->json($response, 200);
     }
