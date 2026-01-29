@@ -18,6 +18,6 @@ class PurchaseController extends Controller
 
         $response = $this->purchaseService->initiate($data, $user);
 
-        return response()->json([], 200);
+        return response()->json($response, 200);
     }
 }

@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('users_achievements', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('user_id')->index();
-            $table->uuid('achievement_id')->index();
+            $table->uuid('user_id');
+            $table->uuid('achievement_id');
             $table->timestamp('unlocked_at');
             $table->timestamps();
 

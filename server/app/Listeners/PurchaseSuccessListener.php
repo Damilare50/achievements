@@ -6,7 +6,7 @@ use App\Events\AchievementUnlocked;
 use App\Events\PurchaseSuccess;
 use Illuminate\Contracts\Queue\ShouldBeEncrypted;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Support\Facades\Log;
 
 class PurchaseSuccessListener implements ShouldQueue, ShouldBeEncrypted
 {
@@ -24,6 +24,7 @@ class PurchaseSuccessListener implements ShouldQueue, ShouldBeEncrypted
     public function handle(PurchaseSuccess $event): void
     {
         $user = $event->user;
+        Log::alert('Handling PurchaseSuccess event for user ID: ' . $user->id);
 
         // Perform actions upon successful purchase
         // For example, increase the user's total purchases

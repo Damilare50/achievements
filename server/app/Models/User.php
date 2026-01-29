@@ -55,9 +55,13 @@ class User extends Authenticatable
     public function achievements()
     {
         return $this->belongsToMany(Achievement::class, 'users_achievements', 'user_id', 'achievement_id')
-            ->as('achievement')
             ->withPivot('unlocked_at')
             ->withTimestamps();
+    }
+
+    public function userAchievements()
+    {
+        return $this->hasMany(UserAchievement::class, 'user_id', 'id');
     }
 
     public function incrementNumberOfPurchases(): void

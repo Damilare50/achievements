@@ -16,7 +16,9 @@ class PurchaseService implements IPurchaseService
     // trigger PurchaseSuccessEvent
     PurchaseSuccess::dispatchIf($response['success'], $user);
 
-    return [];
+    return $response + [
+      'message' => $response['success'] ? 'Purchase completed successfully.' : 'Purchase failed.',
+    ];
   }
 
   public function processPurchase(array $data): array

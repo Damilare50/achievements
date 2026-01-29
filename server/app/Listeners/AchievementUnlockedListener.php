@@ -3,10 +3,12 @@
 namespace App\Listeners;
 
 use App\Events\AchievementUnlocked;
+use App\Models\UserAchievement;
 use App\Service\IWalletService;
 use Carbon\Carbon;
 use Illuminate\Contracts\Queue\ShouldBeEncrypted;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Support\Facades\Log;
 
 class AchievementUnlockedListener implements ShouldQueue, ShouldBeEncrypted
 {
@@ -27,9 +29,12 @@ class AchievementUnlockedListener implements ShouldQueue, ShouldBeEncrypted
         $user = $event->user;
         $achievement = $event->achievement;
 
+        Log::alert('Handling AchievementUnlocked event for user ID: ' . $user->id . ' and achievement ID: ' . $achievement->id);
+
         //create the achievement record
-        $user->achievements()->create([
+        UserAchievement::create([
             'achievement_id' => $achievement->id,
+            'user_id' => $user->id,
             'unlocked_at' => Carbon::now(),
         ]);
 
