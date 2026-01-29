@@ -65,7 +65,7 @@ class User extends Authenticatable
         $this->increment('no_of_purchases');
     }
 
-    public function isEligibleForAnAchievement()
+    public function isEligibleForAnAchievement(): Achievement|null
     {
         $a = Achievement::where('threshold', $this->no_of_purchases)->first();
 

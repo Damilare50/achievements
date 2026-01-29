@@ -2,6 +2,7 @@
 
 namespace App\Listeners;
 
+use App\Events\AchievementUnlocked;
 use App\Events\PurchaseSuccess;
 use Illuminate\Contracts\Queue\ShouldBeEncrypted;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -33,6 +34,7 @@ class PurchaseSuccessListener implements ShouldQueue, ShouldBeEncrypted
         // if current number is equal to an achievement threshold, award achievement
         if ($user->isEligibleForAnAchievement()) {
             //publish achievement unlocked event
+            AchievementUnlocked::dispatch($user, $user->isEligibleForAnAchievement());
         }
     }
 }
