@@ -15,6 +15,6 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('/logout', 'logout')->middleware('auth_required');
 });
 
-Route::controller(PurchaseController::class)->group(function () {
+Route::controller(PurchaseController::class)->middleware('auth_required')->group(function () {
     Route::post('/', 'makePurchase');
 });
