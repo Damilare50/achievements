@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Service;
+namespace App\Service\Impl;
 
 use App\Models\User;
-use Illuminate\Support\Facades\Auth;
+use App\Service\IAuthService;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 
-class AuthService
+class AuthService implements IAuthService
 {
-  public function createUser(array $data)
+  public function createUser(array $data): array
   {
     $user = User::create([
       'name' => $data['name'] ?? '',
@@ -25,7 +25,7 @@ class AuthService
     ];
   }
 
-  public function login(array $data)
+  public function login(array $data): array
   {
     $user = User::where('email', $data['email'])->first();
 
@@ -45,7 +45,7 @@ class AuthService
     ];
   }
 
-  public function logout(User $user)
+  public function logout(User $user): array
   {
     $user->tokens()->delete();
 
