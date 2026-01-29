@@ -5,10 +5,9 @@ namespace App\Listeners;
 use App\Events\AchievementUnlocked;
 use App\Events\PurchaseSuccess;
 use Illuminate\Contracts\Queue\ShouldBeEncrypted;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Facades\Log;
 
-class PurchaseSuccessListener implements ShouldQueue, ShouldBeEncrypted
+class PurchaseSuccessListener implements ShouldBeEncrypted
 {
     /**
      * Create the event listener.

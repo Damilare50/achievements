@@ -7,10 +7,9 @@ use App\Models\UserAchievement;
 use App\Service\IWalletService;
 use Carbon\Carbon;
 use Illuminate\Contracts\Queue\ShouldBeEncrypted;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Facades\Log;
 
-class AchievementUnlockedListener implements ShouldQueue, ShouldBeEncrypted
+class AchievementUnlockedListener implements ShouldBeEncrypted
 {
     /**
      * Create the event listener.
