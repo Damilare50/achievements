@@ -14,7 +14,7 @@ class PurchaseService implements IPurchaseService
     // do purchases
     $response = $this->processPurchase($data);
     // trigger PurchaseSuccessEvent
-    PurchaseSuccess::dispatchIf($response['success'], $user->id);
+    PurchaseSuccess::dispatchIf($response['success'], $user);
 
     return [];
   }

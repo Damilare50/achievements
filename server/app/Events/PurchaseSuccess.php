@@ -2,6 +2,7 @@
 
 namespace App\Events;
 
+use App\Models\User;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PresenceChannel;
@@ -18,7 +19,7 @@ class PurchaseSuccess
      * Create a new event instance.
      */
     public function __construct(
-        public string $user_id,
+        public User $user,
 
     ) {
         //

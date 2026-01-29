@@ -3,10 +3,11 @@
 namespace App\Listeners;
 
 use App\Events\PurchaseSuccess;
+use Illuminate\Contracts\Queue\ShouldBeEncrypted;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 
-class PurchaseSuccessListener implements ShouldQueue
+class PurchaseSuccessListener implements ShouldQueue, ShouldBeEncrypted
 {
     /**
      * Create the event listener.
