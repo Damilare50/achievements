@@ -22,3 +22,11 @@ export interface AuthResponse {
   message?: string;
   errors?: string;
 }
+
+export interface GetUserAchievementsResponse {
+  unlocked_achievements: string[];
+  next_available_achievements: string[];
+  current_badge: string;
+  next_badge: string;
+  remaining_to_unlock_next_badge: number;
+}

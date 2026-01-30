@@ -1,5 +1,11 @@
 import axios from "axios";
-import { AuthResponse, LoginData, SignupData, User } from "../types/auth";
+import {
+  AuthResponse,
+  GetUserAchievementsResponse,
+  LoginData,
+  SignupData,
+  User,
+} from "../types/auth";
 
 const API_BASE_URL = "http://localhost:8000/api";
 
@@ -39,6 +45,17 @@ export const authAPI = {
     const response = await api.get<User>("/user", {
       headers: { Authorization: `Bearer ${token}` },
     });
+
+    return response;
+  },
+
+  getUserAchievements: async (userId: string, token: string) => {
+    const response = await api.get<GetUserAchievementsResponse>(
+      `/user/${userId}/achievements`,
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      },
+    );
 
     return response;
   },
