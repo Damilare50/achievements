@@ -5,7 +5,7 @@ import {
   LoginData,
   SignupData,
   User,
-} from "../types/auth";
+} from "../types/index";
 
 const API_BASE_URL = "http://localhost:8000/api";
 
@@ -16,7 +16,7 @@ const api = axios.create({
   },
 });
 
-export const authAPI = {
+export const serverAPI = {
   signup: async (data: SignupData) => {
     const response = await api.post<AuthResponse>("/create", data);
 

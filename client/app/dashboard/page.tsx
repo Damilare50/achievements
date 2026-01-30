@@ -2,8 +2,8 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { User } from "@/lib/types/auth";
-import { authAPI } from "@/lib/api/auth";
+import { User } from "@/lib/types/index";
+import { serverAPI } from "@/lib/api";
 import { AxiosError } from "axios";
 
 export default function DashboardPage() {
@@ -20,7 +20,7 @@ export default function DashboardPage() {
 
     try {
       async function fetchUserData(token: string) {
-        const response = await authAPI.getUser(token);
+        const response = await serverAPI.getUser(token);
 
         if (response.status === 200 && response.data) {
           setUser(response.data);
@@ -48,7 +48,7 @@ export default function DashboardPage() {
     const token = localStorage.getItem("token");
 
     if (token) {
-      authAPI.logout(token);
+      serverAPI.logout(token);
     }
     localStorage.removeItem("token");
     router.push("/login");

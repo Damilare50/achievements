@@ -5,7 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { signupSchema, SignupFormData } from "@/lib/utils/validation";
 import Input from "@/component/element/Input";
 import Button from "@/component/element/Button";
-import { authAPI } from "@/lib/api/auth";
+import { serverAPI } from "@/lib/api";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { AxiosError } from "axios";
@@ -34,7 +34,7 @@ export default function SignupForm() {
     try {
       setLoading(true);
       setError("");
-      const response = await authAPI.signup(data);
+      const response = await serverAPI.signup(data);
 
       if (response.status === 200 && response.data.access_token) {
         // Store token in localStorage or cookies
