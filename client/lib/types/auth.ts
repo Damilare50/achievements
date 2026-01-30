@@ -2,7 +2,7 @@ export interface User {
   id: string;
   name: string;
   email: string;
-  no_of_purchases: number;
+  no_of_purchases?: number;
 }
 
 export interface SignupData {
@@ -17,6 +17,8 @@ export interface LoginData {
 }
 
 export interface AuthResponse {
-  token: string;
-  user: User;
+  access_token?: string;
+  user?: User;
+  message?: string;
+  errors?: string;
 }

@@ -1,4 +1,5 @@
 import axios from "axios";
+import { AuthResponse, LoginData, SignupData } from "../types/auth";
 
 const API_BASE_URL = "http://localhost:8000/api";
 
@@ -10,16 +11,16 @@ const api = axios.create({
 });
 
 export const authAPI = {
-  signup: async (data: { name: string; email: string; password: string }) => {
-    const response = await api.post("/create", data);
+  signup: async (data: SignupData) => {
+    const response = await api.post<AuthResponse>("/create", data);
 
-    return response.data;
+    return response;
   },
 
-  login: async (data: { email: string; password: string }) => {
-    const response = await api.post("/login", data);
+  login: async (data: LoginData) => {
+    const response = await api.post<AuthResponse>("/login", data);
 
-    return response.data;
+    return response;
   },
 
   logout: async (token: string) => {
@@ -31,6 +32,6 @@ export const authAPI = {
       },
     );
 
-    return response.data;
+    return response;
   },
 };
