@@ -116,7 +116,7 @@ export default function DashboardPage() {
                       <p className="text-2xl font-bold text-yellow-600">
                         {achievementData.current_badge.length != 0
                           ? achievementData.current_badge
-                          : "No achievements unlocked...yet"}
+                          : "No badges unlocked...yet"}
                       </p>
                     </div>
                     <div className="p-4 bg-blue-50 rounded-lg border border-blue-200">
@@ -161,7 +161,7 @@ export default function DashboardPage() {
                 {/* Unlocked Achievements */}
                 <div className="bg-white rounded-lg shadow p-6 mb-6">
                   <h2 className="text-lg font-semibold text-gray-800 mb-4">
-                    Unlocked Achievements (
+                    Unlocked Badges (
                     {achievementData.unlocked_achievements.length})
                   </h2>
                   {achievementData.unlocked_achievements.length > 0 ? (
@@ -180,7 +180,7 @@ export default function DashboardPage() {
                     </div>
                   ) : (
                     <p className="text-gray-500 text-center py-4">
-                      No achievements unlocked yet.
+                      No badges unlocked yet.
                     </p>
                   )}
                 </div>
@@ -188,7 +188,7 @@ export default function DashboardPage() {
                 {/* Next Available Achievements */}
                 <div className="bg-white rounded-lg shadow p-6">
                   <h2 className="text-lg font-semibold text-gray-800 mb-4">
-                    Next Achievements to Unlock (
+                    Next Badges to Unlock (
                     {achievementData.next_available_achievements.length})
                   </h2>
                   {achievementData.next_available_achievements.length > 0 ? (
