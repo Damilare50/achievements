@@ -7,13 +7,20 @@ import Input from "@/component/element/Input";
 import Button from "@/component/element/Button";
 import { authAPI } from "@/lib/api/auth";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AxiosError } from "axios";
 
 export default function SignupForm() {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      router.push("/dashboard");
+    }
+  }, [router]);
 
   const {
     register,
