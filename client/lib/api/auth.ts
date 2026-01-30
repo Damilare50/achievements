@@ -34,4 +34,12 @@ export const authAPI = {
 
     return response;
   },
+
+  getUser: async (token: string) => {
+    const response = await api.get("/user", {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+
+    return response;
+  },
 };
