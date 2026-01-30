@@ -1,4 +1,51 @@
-# Server — Getting Started
+This repository contains a full-stack application with a Laravel backend server and a Next.js client.
+
+**Project Structure**
+
+- `/server` — Laravel API backend
+- `/client` — Next.js frontend application
+
+## Client Setup (Next.js)
+
+Instructions for getting the Next.js client running locally after pulling from GitHub.
+
+**Prerequisites**
+
+- Node.js 18+
+
+**Quick local setup**
+
+1. Navigate to the client directory:
+
+```bash
+cd client
+```
+
+2. Install dependencies:
+
+```bash
+npm install
+```
+
+3. Configure environment variables (if needed):
+
+```bash
+cp .env.example .env.local
+```
+
+Update `.env.local` with 'NEXT_PUBLIC_API_BASE_URL', your API endpoint (typically `http://127.0.0.1:8000/api` for the local server).
+
+4. Start the development server:
+
+```bash
+npm run dev
+```
+
+The client will be available at http://localhost:3000.
+
+---
+
+## Server Setup
 
 This document explains how to get the Laravel-based `server` running locally after pulling the repository.
 
@@ -21,7 +68,9 @@ cd server
 composer run setup
 ```
 
-This will install dependencies, copy the example env file, generate the app key, run migrations and seed the database. 7. Start the local dev server:
+This will install dependencies, copy the example env file, generate the app key, run migrations and seed the database.
+
+3. Start the local dev server:
 
 ```bash
 php artisan serve
@@ -85,8 +134,3 @@ curl -X GET http://127.0.0.1:8000/api/user/{USER_ID}/achievements \
 # Example response:
 # [ 'unlocked_achievements': '', 'next_available_achievements': '','current_badge': '', 'next_badge': '', 'remaining_to_unlock_next_badge': '']
 ```
-
-Notes:
-
-- If your API uses a different auth mechanism (Sanctum cookie auth or a different token field), adapt the `Authorization` header accordingly.
-- The routes used above come from `server/routes/api.php`: `POST /api/create`, `POST /api/login`, and `POST /api/purchase` (authentication required).
