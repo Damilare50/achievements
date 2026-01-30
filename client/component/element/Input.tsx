@@ -15,7 +15,7 @@ export default function Input({
     <div className="w-full">
       {label && (
         <label
-          className="block text-sm font-medium text-gray-700 mb-1"
+          className="block text-sm font-medium text-black-700 mb-1"
           htmlFor={props.id}
         >
           {label}
