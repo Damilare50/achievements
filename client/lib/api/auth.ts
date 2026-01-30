@@ -1,5 +1,5 @@
 import axios from "axios";
-import { AuthResponse, LoginData, SignupData } from "../types/auth";
+import { AuthResponse, LoginData, SignupData, User } from "../types/auth";
 
 const API_BASE_URL = "http://localhost:8000/api";
 
@@ -36,7 +36,7 @@ export const authAPI = {
   },
 
   getUser: async (token: string) => {
-    const response = await api.get("/user", {
+    const response = await api.get<User>("/user", {
       headers: { Authorization: `Bearer ${token}` },
     });
 

@@ -8,6 +8,7 @@ import Button from "@/component/element/Button";
 import { authAPI } from "@/lib/api/auth";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { AxiosError } from "axios";
 
 export default function SignupForm() {
   const router = useRouter();
@@ -38,8 +39,11 @@ export default function SignupForm() {
           response.data.message || "An error occurred. Please try again.",
         );
       }
-    } catch (err) {
-      setError("An error occurred. Please try again.");
+    } catch (err: unknown) {
+      if (err instanceof AxiosError && err.response) {
+        setError(err.response.data?.message || "Signup failed");
+        return;
+      }
     } finally {
       setLoading(false);
     }

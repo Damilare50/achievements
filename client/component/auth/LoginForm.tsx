@@ -8,6 +8,7 @@ import Button from "@/component/element/Button";
 import { authAPI } from "@/lib/api/auth";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { AxiosError } from "axios";
 
 export default function LoginForm() {
   const router = useRouter();
@@ -35,7 +36,11 @@ export default function LoginForm() {
       } else {
         setError(response.data?.message || "Login failed");
       }
-    } catch (err) {
+    } catch (err: unknown) {
+      if (err instanceof AxiosError && err.response) {
+        setError(err.response.data?.message || "Login failed");
+        return;
+      }
       setError("An error occurred. Please try again.");
     } finally {
       setLoading(false);
