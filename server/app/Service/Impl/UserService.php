@@ -37,7 +37,7 @@ class UserService implements IUserService
     $nextBadge = $nextAchievement?->name ?? '';
 
     $remainingToUnlockNextBadge = $nextAchievement
-      ? max(0, $nextAchievement->threshold - $user->no_of_purchases)
+      ? (int) max(0, $nextAchievement->threshold - $user->no_of_purchases)
       : 0;
 
     return [
